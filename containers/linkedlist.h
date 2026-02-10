@@ -40,8 +40,8 @@ private:
 
 public:
     NodeLinkedList(){}
-    NodeLinkedList( value_type _value, ref_type _ref = -1)
-        : m_data(_value), m_ref(_ref){   }
+    NodeLinkedList(value_type _value, ref_type _ref = -1, Node* _next = nullptr)
+    : m_data(_value), m_ref(_ref), m_pNext(_next) { }
     value_type  GetValue   () const { return m_data; }
     value_type &GetValueRef() { return m_data; }
 
@@ -87,8 +87,19 @@ public:
         while (pTemp) {
             this->Insert(pTemp->GetValue(), pTemp->GetRef());
             pTemp = pTemp->GetNext();
+        }
     }
-    
+
+    template <typename ObjFunc, typename... Args>
+    void Foreach(ObjFunc of, Args... args) {
+        lock_guard<recursive_mutex> lock(m_mutex); // Requisito de Concurrencia
+        Node* pTemp = m_pRoot;
+        while (pTemp) {
+            of(pTemp->GetValueRef(), args...);
+            pTemp = pTemp->GetNext();
+        }
+    }
+
     // TODO: Move Constructor
     CLinkedList(CLinkedList<Traits>&& another) noexcept {
         lock_guard<recursive_mutex> lock(another.m_mutex);

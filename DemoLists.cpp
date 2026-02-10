@@ -7,7 +7,7 @@ using namespace std;
 typedef int T1;
 
 void DemoLists(){
-    cout << "--- DEMO BRANCH 26: LE & LEC ---" << endl;
+    cout << "--- DEMO 26: LE y LEC ---" << endl;
     CLinkedList< AscendingTrait<T1> > l1;
     l1.Insert(50, 8);
     l1.Insert(20, 5);
@@ -26,6 +26,5 @@ void DemoLists(){
     CCircularLinkedList<AscendingTrait<T1>> l_circ;
     l_circ.Insert(100, 1);
     l_circ.Insert(200, 2);
-    l_circ.MakeCircular(); // Conecta el último con el primero
-    cout << "Lista Circular (LEC) creada con éxito." << endl;
+    l_circ.MakeCircular();
 }
