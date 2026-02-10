@@ -23,13 +23,44 @@ struct GeneralIterator
             m_pos  (another.m_pos)
     {}
     virtual ~GeneralIterator(){};
-    
-    bool operator!=(const GeneralIterator<Container> &another){
-        return m_pContainer != another.m_pContainer ||
-               m_pos        != another.m_pos;         
+
+    virtual bool operator!=(const GeneralIterator<Container>& another) const {
+        return m_pCurrent != another.m_pCurrent;
     }
-    value_type &operator*(){
-      return m_data[m_pos].GetValueRef();
+
+    virtual value_type& operator*() {
+        return m_pCurrent->GetValueRef();
+    }
+};
+
+template <typename Container>
+class LinkedListForwardIterator : public GeneralIterator<Container> {
+public:
+    using Parent = GeneralIterator<Container>;
+    using value_type = typename Container::value_type;
+
+    LinkedListForwardIterator(Container* pContainer, typename Container::Node* pNode = nullptr)
+        : Parent(pContainer, pNode) {}
+
+    LinkedListForwardIterator& operator++() {
+        if (this->m_pCurrent) {
+            this->m_pCurrent = this->m_pCurrent->GetNext();
+        }
+        return *this;
+    }
+
+    LinkedListForwardIterator operator++(int) {
+        LinkedListForwardIterator temp = *this;
+        ++(*this);
+        return temp;
+    }
+
+    value_type& operator*() {
+        return this->m_pCurrent->GetValueRef();
+    }
+    
+    bool operator!=(const LinkedListForwardIterator& another) const {
+        return this->m_pCurrent != another.m_pCurrent;
     }
 };
 
