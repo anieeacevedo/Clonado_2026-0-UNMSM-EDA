@@ -1,13 +1,27 @@
 #include <iostream>
 #include "containers/lists.h"
+#include "containers/linkedlist.h"
+#include "containers/queue.h"
+
 
 using namespace std;
 
-void DemoLists(){
-    CLinkedList< AscendingTrait<T1> > l1;
+void DemoQueue(){
+    cout << "---------- Demo Queue (FIFO) ---------" << endl;
+    CQueue<AscendingTrait<int>> queue;
 
-    l1.Insert(20, 5);
-    l1.Insert(30, 3);
-    cout << l1 << endl;
+    queue.Push(15, 1);
+    queue.Push(23, 2);
+    queue.Push(37, 3);
+
+    cout << "Tras 3 Push (15, 23, 37):" << endl;
+    cout << queue << endl;
+
+    cout << "Elemento al frente (Front): " << queue.Front() << endl;
+
+    cout << "Tras el Pop (salida del 15)." << endl;
+    queue.Pop();
+
+    cout << "Cola despues del Pop:" << endl;
+    cout << queue << endl;
 }
-
