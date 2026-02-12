@@ -3,14 +3,17 @@
 #include "pointers.h"
 #include "containers/array.h"
 #include "containers/lists.h"
+#include "containers/stack.h"
 
 // g++ -std=c++17 -Wall -g -pthread main.cpp -o main
+void DemoStack();
 
 int main() {
     std::cout << "Hello EDA-UNMSM!" << std::endl;
     // DemoUtil();
     // DemoPointers1();
     // DemoArray();
-    DemoLists();
+    // DemoLists();
+    DemoStack();
     return 0;
 }

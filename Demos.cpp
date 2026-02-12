@@ -1,13 +1,26 @@
 #include <iostream>
 #include "containers/lists.h"
+#include "containers/stack.h"
 
 using namespace std;
 
-void DemoLists(){
-    CLinkedList< AscendingTrait<T1> > l1;
-
-    l1.Insert(20, 5);
-    l1.Insert(30, 3);
-    cout << l1 << endl;
+void DemoStack(){
+    cout<< "--------- Demo Stack ---------" << endl;
+    CStack<AscendingTrait<int>> stack;
+    
+    stack.Push(10, 1);
+    stack.Push(20, 2);
+    stack.Push(30, 3);
+    
+    cout << "Pila despues de 3 Push:" << endl;
+    cout << stack << endl;
+    
+    cout << "Elemento en el Top: " << stack.Top() << endl;
+    
+    cout << "Haciendo Pop." << endl;
+    stack.Pop();
+    
+    cout << "Pila despues del Pop:" << endl;
+    cout << stack << endl;
 }
 
