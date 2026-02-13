@@ -35,9 +35,9 @@ public:
         m_list.push_back(val, ref);
     }
 
-    void Pop() {
+    value_type Pop() {
         lock_guard<recursive_mutex> lock(m_mutex);
-        m_list.pop_back();
+        return m_list.pop_back();
     }
 
     value_type& Top() {

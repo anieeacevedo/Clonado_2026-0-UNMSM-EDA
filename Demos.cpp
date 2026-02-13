@@ -18,7 +18,8 @@ void DemoStack(){
     cout << "Elemento en el Top: " << stack.Top() << endl;
     
     cout << "Haciendo Pop." << endl;
-    stack.Pop();
+    int valorExtraido = stack.Pop();
+    cout << "Valor extraido: " << valorExtraido << endl;
     
     cout << "Pila despues del Pop:" << endl;
     cout << stack << endl;
