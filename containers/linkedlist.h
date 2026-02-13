@@ -4,6 +4,7 @@
 #include <mutex>
 #include <fstream>
 #include <utility>
+#include <cassert>
 #include "../general/types.h"
 #include "../util.h"
 #include "GeneralIterator.h"
@@ -133,16 +134,21 @@ public:
         lock_guard<recursive_mutex> lock(m_mutex); 
         return m_nElements;  }
     
-        void pop_front() {
+        value_type pop_front() {
             lock_guard<recursive_mutex> lock(m_mutex);
-            if (!m_pRoot) return;
+            assert(m_pRoot != nullptr && "Queue vacia");
             
+            value_type valor = m_pRoot->GetValue();
             Node* pTemp = m_pRoot;
+
             m_pRoot = m_pRoot->GetNext();
-            delete pTemp;
             
             if (!m_pRoot) m_pLast = nullptr;
-            m_nElements--;
+            
+            delete pTemp;
+            --m_nElements;
+
+            return valor;
         }
 
 private:

@@ -18,9 +18,9 @@ void DemoQueue(){
     cout << queue << endl;
 
     cout << "Elemento al frente (Front): " << queue.Front() << endl;
-
-    cout << "Tras el Pop (salida del 15)." << endl;
-    queue.Pop();
+    
+    int expulsado = queue.Pop();
+    cout << "Tras el Pop. Valor expulsado:"<< expulsado << endl;
 
     cout << "Cola despues del Pop:" << endl;
     cout << queue << endl;
